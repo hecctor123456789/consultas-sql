@@ -1,0 +1,393 @@
+
+ create tabla usuarios(
+   id 		INT PRIMARY KEY AUTO_INCREMENT,
+   usuario 	VARCHAR(20),
+   nombre 	VARCHAR(20),
+   sexo 	VARCHAR(1),
+   nivel 	TINYINT,
+   email 	VARCHAR(50),
+   telefono 	VARCHAR(20),
+   marca 	VARCHAR(20),
+   compania 	VARCHAR(20),
+   saldo 	FLOAT,
+   activo 	BOOLEAN
+);
+
+1-listar los nombres de los usuarios
+
+	SELECT nombre FROM usuarios;
+
+2-calcular el saldo maximo de los usuarios de sexo mujer
+
+	SELECT MAX(saldo)	
+	FROM usuarios
+	WHERE sexo='F'
+
+3-listar nombre y telefono de usuarios con telefono NOKIA, BLACKBERRY O SONY
+
+	SELECT nombre, telefono
+	FROM   usuarios
+	WHERE marca='NOKIA' OR marca='BLACKBERRY' OR marca='SONY'
+
+
+4-contar los usuarios sin saldo o inactivos
+
+	SELECT COUNT(*)
+	FROM	usuarios
+	WHERE	saldo=0 OR activo='False'
+
+
+5-listar el login de los usuarios con nivel 1,2 o 3
+
+	SELECT usuarios
+	FROM	usuarios
+	WHERE	nivel=1 OR nivel=2 OR nivel=3
+
+6-listar los numeros de telefono con saldo menor o igual a 300
+	
+	SELECT telefono
+	FROM	usuarios
+	WHERE	saldo <=300
+
+
+
+7-calcular la suma de los saldos de los usuarios de la compañia NEXTEL
+
+	
+	SELECT SUM(saldo)
+	FROM	usuarios
+	WHERE	compania='NEXTEL'
+
+
+
+8-Contar el numero de usuarios por compañia telefonica
+
+	
+	SELECT compania, COUNT(compania) AS cantidad
+	FROM usuarios
+	GROUP BY  compania
+
+9-contar el numero de usuarios por nivel
+
+	SELECT nivel, COUNT(nivel) AS cantidad
+	FROM usuarios
+	GROUP BY  nivel
+
+10-listar el login de los usuarios con nivel 2
+
+	SELECT usuario
+	FROM	usuarios
+	WHERE nivel=2
+
+
+11-mostrar el email de los usuarios que usan gmail
+
+	SELECT nombre, email
+	FROM	usuarios
+	WHERE email LIKE '*@gmail'
+
+
+12-listar el nombre y telefono de los usuarios con telefono lg, samsung o motorola
+
+	SELECT nombre, telefono
+	FROM	usuarios
+	WHERE 	marca='LG' OR marca='SAMSUNG' OR marca='MOTOROLA'
+
+
+13-listar nombre y telefono de los usuarios con telefono que no sean de la marca lg o samsung
+
+
+	SELECT nombre, telefono
+	FROM	usuarios
+	WHERE marca in ( SELECT marca
+			 FROM 	usuarios
+			 WHERE  marca <> 'LG' OR marca <> 'SAMSUNG' )
+
+
+14-listar el login y telefono de usuarios con compañia telefonica iusacell
+
+
+	SELECT usuario, telefono
+	FROM	usuarios
+	WHERE compania ='IUSACELL'
+
+
+15-listar el login y telefono de usuarios con compañia telefonica que no sea telcel
+
+	SELECT usuario, telefono
+	FROM	usuarios
+	WHERE compania <> 'TELCEL'
+
+
+16-calcular el saldo promedio de usuarios que tienen telefono marca nokia
+
+	SELECT AVG(saldo) AS promedioSaldo
+	FROM	usuarios
+	WHERE marca= 'NOKIA'
+
+
+17-listar el login y telefono de usuarios con compañia iusacell o axel
+
+
+	SELECT usuario, telefono
+	FROM usuarios
+	WHERE compania IN ('IUSACELL', 'AXEL')
+
+
+18-mostrar el email de usuarios que no usan yhoo
+
+	SELECT email
+	FROM usuarios
+	WHERE email NOT LIKE '*@yahoo'
+
+
+
+19-listar el login y telefono de usuarios compañia telefonica que no sea telcel o iusacell
+
+	
+	SELECT usuario, telefono
+	FROM	usuarios
+	WHERE	compania NOT IN ('TELCEL','IUSACELL')
+
+
+
+20-listar el login y telefono de usuarios con compañia unefon
+
+	SELECT usuario, telefono
+	FROM	usuarios
+	WHERE compania='UNEFON'
+
+
+21-listar las marcas de celular en orden alfabetico descendente
+
+
+	SELECT marca
+	FROM	usuarios
+	ORDER BY marca DESC
+
+
+22-listar las compañias en orden alfabetico aleatorio
+
+
+	SELECT compania
+	FROM	usuarios
+	ORDER BY compania
+
+
+
+23-listar el login de usuarios con nivel 0 o 2
+
+	SELECT usuario
+	FROM	usuarios
+	WHERE nivel IN (0,2)
+
+
+
+24-calcular el saldo promedio de usuarios con telefono marca lg
+
+
+	SELECT AVG(saldo) AS promedioSaldo
+	FROM	usuarios
+	WHERE marca='LG'
+
+
+
+25-listar el login de usuarios con nivel 1 o 3
+
+	SELECT usuario
+	FROM	usuarios
+	WHERE	nivel IN (1,3)
+
+
+
+26-listar nombre y telefono de usuarios con telefono que no sean de la marca BLACKBERRY
+
+	SELECT nombre, telefono
+	FROM	usuarios
+	WHERE marca <> 'BLACKBERRY'
+
+
+27-listar el login de usuarios con nivel 3
+
+	SELECT usuario
+	FROM	usuarios
+	WHERE nivel=3
+
+
+
+28-listar el login de usuarios con nivel 0
+
+	SELECT usuario
+	FROM	usuarios
+	WHERE nivel=0
+
+
+
+29-listar el login de usuarios con nivel 1
+
+	SELECT usuario
+	FROM	usuarios
+	WHERE nivel=1
+
+
+
+30-contar el numero de usuarios por sexo
+
+	SELECT sexo, COUNT(sexo) AS cantidad
+	FROM	usuarios
+	GROUP BY sexo
+
+
+31-listar el login y telefono de usuarios con compañia atyt
+
+	SELECT usuario, telefono
+	FROM	usuarios
+	WHERE compania='AT&T'
+
+
+
+32-listar las compañias en orden descendente
+
+	SELECT compania
+	FROM	usuarios
+	ORDER BY compania DESC
+
+
+
+33-listar el login de usuarios inactivos
+
+	SELECT usuario
+	FROM usuarios
+	WHERE activo='False'
+
+
+
+34-listar los numeros de telefono sin saldo
+
+	SELECT telefono
+	FROM	usuarios
+	WHERE saldo=0
+
+
+35-calcular el saldo minimo de los usuarios masculinos
+
+	SELECT MIN(saldo) AS saldoMinimo
+	FROM	usuarios
+	WHERE	sexo='M'
+
+
+
+36-listar los numeros de telefono con saldo mayor a 300
+
+	SELECT telefono
+	FROM	usuarios
+	WHERE	saldo > 300
+
+
+
+37-contar el numero de usuarios por marca de telefono
+	
+	SELECT marca, COUNT(telefono) AS cantidadUsuarios
+	FROM	usuarios
+	GROUP BY marca
+
+
+
+
+38-listar nombre y telefono de usuarios con telefono que no sean lg
+
+	SELECT nombre, telefono
+	FROM	usuarios
+	WHERE marca <> 'LG'
+
+
+
+39-listar las compañias en orden alfabetico asc
+
+	SELECT compania
+	FROM	usuarios
+	ORDER BY compania ASC
+
+
+
+40-calcular la suma de los saldos de usuarios de la compañia unefon
+
+	SELECT SUM(saldo) AS saldoTotal
+	FROM	usuarios
+	WHERE 	compania= 'UNEFON'
+
+
+
+41-mostrar el email de usuarios que usan hotmail
+
+	SELECT email
+	FROM	usuarios
+	WHERE email LIKE '*@hotmail'
+
+
+
+
+42-listar nombres de usuarios sin saldo o inactivos
+
+	SELECT nombre
+	FROM	usuarios
+	WHERE saldo=0 OR activo='False'
+
+
+
+43-listar el login y telefono de usuarios con compañia iusacell o telcel
+
+
+	SELECT usuario, telefono
+	FROM	usuarios
+	WHERE compania IN ('IUSACELL', 'TELCEL')
+
+
+
+44-listar las marcas de celular en orden asc
+
+	SELECT marca
+	FROM	usuarios
+	ORDER BY marca	ASC
+
+
+
+45-listar las diferentes marcas de celular en orden aleatorio
+
+	SELECT marca
+	FROM 	usuarios
+	ORDER BY marca
+
+
+46-listar el login y telefono de usuarios con compañia iusacell o unefon
+
+	SELECT usuario, telefono
+	FROM	usuarios
+	WHERE compania= 'IUSACELL' OR compania= 'UNEFON'
+
+
+
+47-listar nombre y telefono de usuarios con telefono que no sean de marca motorola o nokia
+
+	SELECT nombre, telefono
+	FROM	usuarios
+	WHERE 	marca NOT IN ('MOTOROLA', 'NOKIA')
+
+
+
+48-calcular la suma de saldos de usuarios de la compañia telcel
+
+	SELECT  SUM(saldo) AS saldoTotal
+	FROM	usuarios
+	WHERE 	compania= 'TELCEL'
+
+
+
+
+
+
+
+
+
+
+
